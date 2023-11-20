@@ -254,8 +254,8 @@ module Actions::PerformsImport
       # IN CI, it comes to us as a String
       # In local envs, it comes to us as a ActionDispatch::Http::UploadedFile
       attachment = if attachment_changes["file"].attachable.is_a?(String)
-        ActiveStorage::Blob.service.send(:url,file.blob.key)
-      else
+                     attachment_changes["file"].blob.url
+                   else
         attachment_changes["file"].attachable
       end
 
